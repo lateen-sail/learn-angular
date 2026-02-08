@@ -1,0 +1,168 @@
+@import url("../foundation/variables.css");
+@import url("../foundation/reset.css");
+@import url("../foundation/base.css");
+@import url("../foundation/layout.css");
+@import url("../foundation/utility.css");
+@import url("../object/molecules/overflow-x-scroll.css");
+@import url("../object/molecules/overflow-y-scroll.css");
+:root {
+  @media (width > 750px) {
+    --wrapper-padding: 0 0 0 16rem;
+  }
+  @media (width <= 750px) {
+    --wrapper-padding: 0 2rem;
+  }
+}
+.main {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  height: 100vh;
+  grid-template-rows: max-content 2fr minmax(24rem, 1fr);
+  @media (width > 750px) {
+    padding-top: 6.4rem;
+    gap: 3.2rem;
+  }
+  @media (width <= 750px) {
+    padding-top: 4.8rem;
+    gap: 3.2rem;
+  }
+}
+.copy {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  cursor: pointer;
+  transition: opacity 200ms;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+.search {
+  display: grid;
+  grid-template-columns: 1fr 8rem;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 64rem;
+  padding: var(--wrapper-padding);
+  .search-input {
+    display: flex;
+    align-items: center;
+    height: 4.8rem;
+    padding: 1.6rem;
+    border-radius: 0.4rem;
+    background: var(--bg-200);
+  }
+  .search-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.4rem;
+    background: var(--primary-100);
+    color: var(--primary-300);
+    font-weight: bold;
+  }
+}
+.cards {
+  display: flex;
+  gap: 2.4rem;
+  padding: var(--wrapper-padding);
+  .card {
+    width: 32.8rem;
+  }
+  .card-title {
+    padding: 1.6rem 2.4rem;
+    border-left: solid 1px var(--text-200);
+    font-weight: 400;
+    font-size: 2.5rem;
+    letter-spacing: 0;
+  }
+  .card-items {
+    display: grid;
+    gap: 1.2rem;
+    padding: 1.6rem 2.4rem;
+    border-left: solid 1px var(--accent-200);
+  }
+  .card-item-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--text-200);
+  }
+  .card-item-checkbox {
+    position: relative;
+    width: 1.6rem;
+    height: 1.6rem;
+    cursor: pointer;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0);
+      border: 1px solid var(--primary-300);
+      border-radius: 2px;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0.33rem;
+      left: 0.3rem;
+      width: 1.1rem;
+      height: 0.6rem;
+      border-style: solid;
+      border-color: white;
+      border-width: 1px 1px 0 0;
+      opacity: 0;
+      rotate: 135deg;
+      transition: opacity 0.2s ease-in-out;
+    }
+    &:checked {
+      background: var(--primary-300);
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+  .card-item-anc:hover {
+    text-decoration: underline;
+  }
+}
+.output {
+  position: relative;
+  margin-top: 2.4rem;
+  background-color: var(--bg-200);
+  font-size: var(--font-sm);
+  @media (width > 750px) {
+    padding: 3rem;
+  }
+  @media (width <= 750px) {
+    padding: 1.6rem;
+  }
+  .output-rows {
+    display: grid;
+    gap: 1.6rem;
+  }
+  .output-row {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .output-title {
+    font-weight: 700;
+  }
+  .output-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .output-item {
+    & + &::before {
+      display: inline-block;
+      content: "/";
+    }
+  }
+}

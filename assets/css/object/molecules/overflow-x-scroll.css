@@ -1,0 +1,19 @@
+.overflow-x-scroll {
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    height: 1.2rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+  }
+  &::-webkit-scrollbar-corner {
+    background: rgba(255, 255, 255, 0);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12rem;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}

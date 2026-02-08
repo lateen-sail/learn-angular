@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja" ng-app="app">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Angular</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="./assets/js/controller.js"></script>
+    <link rel="stylesheet" href="./assets/css/page/index.css" />
+  </head>
+  <body ng-controller="MainController">
+    <main class="main">
+      <aside class="search">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="キーワードを入力してください"
+          ng-model="searchText"
+        />
+      </aside>
+      <section class="cards overflow-x-scroll overflow-y-scroll">
+        <!-- <div ng-repeat="item in items | orderBy:'label' | limitTo:5 "> -->
+        <div ng-repeat="item in items | filter: searchText">
+          <article class="card">
+            <h2 class="card-title">{{ item.label | uppercase }}</h2>
+            <ul class="card-items">
+              <li class="card-item" ng-repeat="value in item.values">
+                <label class="card-item-label">
+                  <input
+                    type="checkbox"
+                    class="card-item-checkbox"
+                    ng-model="selected[value.label]"
+                    ng-change="updateSelectedItems(item.label, value, selected[value.label])"
+                  />
+                  <a
+                    href="{{ value.url }}"
+                    target="_blank"
+                    class="card-item-anc"
+                    rel="noopener noreferrer"
+                    >{{ value.label }}</a
+                  >
+                </label>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+      <section class="output overflow-x-scroll overflow-y-scroll">
+        <div class="output-rows">
+          <dl
+            class="output-row js-copy-row"
+            ng-repeat="(label, values) in selectedItems"
+          >
+            <dt class="output-title js-copy-title">■ {{ label }}</dt>
+            <dd>
+              <ul class="output-items">
+                <li
+                  class="output-item js-copy-item"
+                  ng-repeat="value in values"
+                >
+                  {{ value.label }}
+                </li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+      </section>
+      <div class="copy js-copy-btn">
+        <img src="./assets/images/icon-copy.svg" />
+      </div>
+    </main>
+  </body>
+</html>
